@@ -68,4 +68,5 @@ public class Teenager implements Serializable {
     @LazyCollection(LazyCollectionOption.FALSE)
     private List<Caretaker> caretakers = new ArrayList<>();
 
+
 }
