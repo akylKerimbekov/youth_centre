@@ -1,6 +1,7 @@
 .idea/
 *.iml
 *.iws
+*.db
 
 log/
 target/
