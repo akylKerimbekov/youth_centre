@@ -34,9 +34,21 @@ public class MainController implements Initializable {
         teenFirstName.setCellValueFactory(new PropertyValueFactory<Teenager, String>("firstName"));
         teenLastName.setCellValueFactory(new PropertyValueFactory<Teenager, String>("lastName"));
         teenager.setItems(TeenagerService.getInstance().findAll());
+        teenager.getSelectionModel().selectedItemProperty().addListener((obs, oldSelection, newSelection) -> {
+            if (newSelection != null) {
+                System.out.println("teenager");
+                request.setItems(RequestService.getInstance().findByTeenagerId(newSelection.getId()));
+            }
+        });
 
         requestId.setCellValueFactory(new PropertyValueFactory<Request, Long>("id"));
         requestNum.setCellValueFactory(new PropertyValueFactory<Request, String>("number"));
         request.setItems(RequestService.getInstance().findAll());
+        request.getSelectionModel().selectedItemProperty().addListener((obs, oldSelection, newSelection) -> {
+            if (newSelection != null) {
+                System.out.println("request");
+                teenager.getSelectionModel().clearSelection();
+            }
+        });
     }
 }
