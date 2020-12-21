@@ -30,5 +30,8 @@
         <mapping class="dev.akyl.youthcentre.repository.entity.DeliveryServiceRef" />
         <mapping class="dev.akyl.youthcentre.repository.entity.HardLifeRef" />
         <mapping class="dev.akyl.youthcentre.repository.entity.PsychoActiveRef" />
+        <mapping class="dev.akyl.youthcentre.repository.entity.SurveyRef" />
+        <mapping class="dev.akyl.youthcentre.repository.entity.SurveyResult" />
+        <mapping class="dev.akyl.youthcentre.repository.entity.Survey" />
     </session-factory>
 </hibernate-configuration>
