@@ -4,32 +4,106 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<HBox prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="dev.akyl.youthcentre.presentation.controller.MainController">
+<HBox prefHeight="800.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="dev.akyl.youthcentre.presentation.controller.MainController">
     <children>
-        <VBox prefHeight="400.0" prefWidth="421.0">
+        <VBox prefHeight="800.0" prefWidth="361.0">
             <children>
-                <TableView fx:id="teenager" prefHeight="374.0" prefWidth="239.0">
+                <TableView fx:id="teenager" prefHeight="733.0" prefWidth="341.0">
                     <columns>
-                        <TableColumn fx:id="teenFirstName" prefWidth="75.0" text="name" />
-                        <TableColumn fx:id="teenLastName" prefWidth="75.0" text="surname" />
+                        <TableColumn fx:id="teenFirstName" prefWidth="75.0" text="Имя" />
+                        <TableColumn fx:id="teenLastName" prefWidth="75.0" text="Фамилия" />
+                        <TableColumn prefWidth="98.0" text="Дата рождения" />
+                        <TableColumn prefWidth="75.0" text="Пол" />
                     </columns>
                     <VBox.margin>
                         <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                     </VBox.margin>
                 </TableView>
+                <HBox>
+                    <VBox.margin>
+                        <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                    </VBox.margin>
+                    <children>
+                        <Button mnemonicParsing="false" text="Добавить" wrapText="true">
+                            <HBox.margin>
+                                <Insets left="100.0" right="15.0" />
+                            </HBox.margin>
+                        </Button>
+                        <Button mnemonicParsing="false" text="Изменить" wrapText="true">
+                            <HBox.margin>
+                                <Insets right="15.0" />
+                            </HBox.margin>
+                        </Button>
+                        <Button mnemonicParsing="false" text="Удалить" wrapText="true" />
+                    </children>
+                </HBox>
             </children>
         </VBox>
-        <VBox prefHeight="400.0" prefWidth="504.0">
-         <children>
-            <TableView fx:id="request" prefHeight="135.0" prefWidth="322.0">
-              <columns>
-                <TableColumn fx:id="requestId" prefWidth="75.0" text="C1" />
-                <TableColumn fx:id="requestNum" prefWidth="75.0" text="C2" />
-              </columns>
-               <VBox.margin>
-                  <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
-               </VBox.margin>
-            </TableView>
-         </children></VBox>
+        <VBox prefHeight="800.0" prefWidth="837.0">
+            <children>
+                <TableView fx:id="request" prefHeight="298.0" prefWidth="817.0">
+                    <columns>
+                        <TableColumn fx:id="requestId" prefWidth="75.0" text="Номер" />
+                        <TableColumn fx:id="requestNum" prefWidth="75.0" text="C2" />
+                    </columns>
+                    <VBox.margin>
+                        <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                    </VBox.margin>
+                </TableView>
+                <HBox prefHeight="38.0" prefWidth="817.0">
+                    <children>
+                        <Button mnemonicParsing="false" text="Добавить">
+                            <HBox.margin>
+                                <Insets left="550.0" right="15.0" />
+                            </HBox.margin>
+                        </Button>
+                        <Button mnemonicParsing="false" text="Изменить">
+                            <HBox.margin>
+                                <Insets left="10.0" right="15.0" />
+                            </HBox.margin>
+                        </Button>
+                        <Button mnemonicParsing="false" text="Удалить">
+                            <HBox.margin>
+                                <Insets left="10.0" right="15.0" />
+                            </HBox.margin>
+                        </Button>
+                    </children>
+                    <VBox.margin>
+                        <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                    </VBox.margin>
+                </HBox>
+                <TableView prefHeight="385.0" prefWidth="817.0">
+                    <columns>
+                        <TableColumn prefWidth="75.0" text="C1" />
+                        <TableColumn prefWidth="75.0" text="C2" />
+                    </columns>
+                    <VBox.margin>
+                        <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                    </VBox.margin>
+                </TableView>
+                <HBox prefHeight="38.0" prefWidth="817.0">
+                    <children>
+                        <Button mnemonicParsing="false" text="Добавить">
+                            <HBox.margin>
+                                <Insets left="550.0" right="15.0" />
+                            </HBox.margin>
+                        </Button>
+                        <Button mnemonicParsing="false" text="Изменить">
+                            <HBox.margin>
+                                <Insets left="10.0" right="15.0" />
+                            </HBox.margin>
+                        </Button>
+                        <Button mnemonicParsing="false" text="Удалить">
+                            <HBox.margin>
+                                <Insets left="10.0" right="15.0" />
+                            </HBox.margin>
+                        </Button>
+                    </children>
+                    <VBox.margin>
+                        <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                    </VBox.margin>
+                </HBox>
+            </children>
+        </VBox>
     </children>
 </HBox>
