@@ -4,12 +4,19 @@ import dev.akyl.youthcentre.repository.entity.Request;
 import dev.akyl.youthcentre.repository.entity.Teenager;
 import dev.akyl.youthcentre.service.RequestService;
 import dev.akyl.youthcentre.service.TeenagerService;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.stage.Modality;
+import javafx.stage.Stage;
 
+import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
@@ -50,5 +57,19 @@ public class MainController implements Initializable {
                 teenager.getSelectionModel().clearSelection();
             }
         });
+    }
+
+    @FXML
+    public void addTeenager(ActionEvent actionEvent) throws IOException {
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/add_teenager.fxml"));
+        Parent parent = fxmlLoader.load();
+        AddTeenagerController dialogController = fxmlLoader.<AddTeenagerController>getController();
+        dialogController.setAppMainObservableList(TeenagerService.getInstance().getTeenagers());
+
+        Scene scene = new Scene(parent, 300, 200);
+        Stage stage = new Stage();
+        stage.initModality(Modality.APPLICATION_MODAL);
+        stage.setScene(scene);
+        stage.showAndWait();
     }
 }
