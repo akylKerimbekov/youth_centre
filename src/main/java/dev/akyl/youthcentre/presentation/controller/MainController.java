@@ -66,7 +66,23 @@ public class MainController implements Initializable {
         AddTeenagerController dialogController = fxmlLoader.<AddTeenagerController>getController();
         dialogController.setAppMainObservableList(TeenagerService.getInstance().getTeenagers());
 
-        Scene scene = new Scene(parent, 300, 200);
+        Scene scene = new Scene(parent, 500, 300);
+        Stage stage = new Stage();
+        stage.initModality(Modality.APPLICATION_MODAL);
+        stage.setScene(scene);
+        stage.showAndWait();
+    }
+
+    public void updateTeenager(ActionEvent actionEvent) throws IOException {
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/update_teenager.fxml"));
+        Parent parent = fxmlLoader.load();
+        UpdateTeenagerController dialogController = fxmlLoader.<UpdateTeenagerController>getController();
+
+        Teenager temp = teenager.getSelectionModel().getSelectedItem();
+
+        dialogController.setTfUpdName(temp.getFirstName());
+
+        Scene scene = new Scene(parent, 500, 300);
         Stage stage = new Stage();
         stage.initModality(Modality.APPLICATION_MODAL);
         stage.setScene(scene);

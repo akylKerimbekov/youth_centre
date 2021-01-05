@@ -3,51 +3,95 @@
 <?import javafx.geometry.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
-<?import javafx.scene.text.Text?>
-<AnchorPane minHeight="300.0" minWidth="400.0" xmlns="http://javafx.com/javafx/8.0.111"
-            xmlns:fx="http://javafx.com/fxml/1" fx:controller="dev.akyl.youthcentre.presentation.controller.AddTeenagerController">
+<?import javafx.scene.text.*?>
+
+<AnchorPane minHeight="500.0" minWidth="400.0" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="dev.akyl.youthcentre.presentation.controller.AddTeenagerController">
     <children>
-        <VBox alignment="CENTER" layoutX="131.0" layoutY="50.0" prefHeight="200.0" prefWidth="100.0"
-              AnchorPane.bottomAnchor="5.0" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="5.0"
-              AnchorPane.topAnchor="5.0">
+        <VBox alignment="CENTER" layoutX="131.0" layoutY="50.0" prefHeight="400.0" prefWidth="100.0" AnchorPane.bottomAnchor="5.0" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="5.0">
             <children>
-                <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Adding Person Dialog"/>
-                <HBox alignment="CENTER" prefHeight="50.0" prefWidth="200.0" spacing="10.0">
+                <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Добавить" />
+                <HBox alignment="CENTER" layoutX="10.0" layoutY="126.0" prefHeight="50.0" prefWidth="200.0" spacing="10.0">
                     <children>
-                        <Label alignment="CENTER_RIGHT" minWidth="100.0" text="Id"/>
-                        <TextField fx:id="tfId" HBox.hgrow="ALWAYS"/>
+                        <Label alignment="CENTER_RIGHT" minWidth="100.0" text="Фамилия" />
+                        <TextField id="1" fx:id="tfLastName" HBox.hgrow="ALWAYS" />
                     </children>
                     <padding>
-                        <Insets right="30.0"/>
+                        <Insets right="30.0" />
                     </padding>
                 </HBox>
                 <HBox alignment="CENTER" prefHeight="50.0" prefWidth="200.0" spacing="10.0">
                     <children>
-                        <Label alignment="CENTER_RIGHT" minWidth="100.0" text="Name"/>
-                        <TextField fx:id="tfName" HBox.hgrow="ALWAYS"/>
+                        <Label alignment="CENTER_RIGHT" minWidth="100.0" text="Имя" />
+                        <TextField fx:id="tfName" HBox.hgrow="ALWAYS" />
                     </children>
                     <padding>
-                        <Insets right="30.0"/>
+                        <Insets right="30.0" />
                     </padding>
                 </HBox>
-                <HBox alignment="CENTER" prefHeight="50.0" prefWidth="200.0" spacing="10.0">
+                <HBox alignment="CENTER" layoutX="10.0" layoutY="126.0" prefHeight="50.0" prefWidth="200.0" spacing="10.0">
                     <children>
-                        <Label alignment="CENTER_RIGHT" minWidth="100.0" text="Age"/>
-                        <TextField fx:id="tfAge" HBox.hgrow="ALWAYS"/>
+                        <Label alignment="CENTER_RIGHT" minWidth="100.0" text="Отчество" />
+                        <TextField fx:id="tfMidleName" HBox.hgrow="ALWAYS" />
                     </children>
                     <padding>
-                        <Insets right="30.0"/>
+                        <Insets right="30.0" />
+                    </padding>
+                </HBox>
+                <HBox alignment="CENTER" layoutX="10.0" layoutY="126.0" prefHeight="50.0" prefWidth="200.0" spacing="10.0">
+                    <children>
+                        <Label alignment="CENTER_RIGHT" minWidth="100.0" text="Email" />
+                        <TextField fx:id="tfEmail" HBox.hgrow="ALWAYS" />
+                    </children>
+                    <padding>
+                        <Insets right="30.0" />
+                    </padding>
+                </HBox>
+                <HBox alignment="CENTER" layoutX="10.0" layoutY="126.0" prefHeight="50.0" prefWidth="200.0" spacing="10.0">
+                    <children>
+                        <Label alignment="CENTER_RIGHT" minWidth="100.0" text="ИНН" />
+                        <TextField fx:id="tfINN" HBox.hgrow="ALWAYS" />
+                    </children>
+                    <padding>
+                        <Insets right="30.0" />
+                    </padding>
+                </HBox>
+                <HBox alignment="CENTER" layoutX="10.0" layoutY="126.0" prefHeight="50.0" prefWidth="200.0" spacing="10.0">
+                    <children>
+                        <Label alignment="CENTER_RIGHT" minWidth="100.0" text="Пол" />
+                        <TextField fx:id="tfSex" HBox.hgrow="ALWAYS" />
+                    </children>
+                    <padding>
+                        <Insets right="30.0" />
+                    </padding>
+                </HBox>
+                <HBox alignment="CENTER" layoutX="10.0" layoutY="126.0" prefHeight="50.0" prefWidth="200.0" spacing="10.0">
+                    <children>
+                        <Label alignment="CENTER_RIGHT" minWidth="100.0" text="Адрес" />
+                        <TextField fx:id="tfAddress" HBox.hgrow="ALWAYS" />
+                    </children>
+                    <padding>
+                        <Insets right="30.0" />
+                    </padding>
+                </HBox>
+                <HBox alignment="CENTER" layoutX="10.0" layoutY="126.0" prefHeight="50.0" prefWidth="200.0" spacing="10.0">
+                    <children>
+                        <Label alignment="CENTER_RIGHT" minWidth="100.0" text="Контакты" />
+                        <TextField fx:id="tfContact" HBox.hgrow="ALWAYS" />
+                    </children>
+                    <padding>
+                        <Insets right="30.0" />
                     </padding>
                 </HBox>
                 <HBox alignment="CENTER_RIGHT">
                     <children>
-                        <Button mnemonicParsing="false" onAction="#btnAddPersonClicked" text="Add"/>
+                        <Button mnemonicParsing="false" onAction="#btnAddPersonClicked" text="Добавить" />
+                        <Button mnemonicParsing="false" onAction="#btnAddPersonCancel" text="Отменить" />
                     </children>
                     <opaqueInsets>
-                        <Insets/>
+                        <Insets />
                     </opaqueInsets>
                     <padding>
-                        <Insets right="30.0"/>
+                        <Insets right="30.0" />
                     </padding>
                 </HBox>
             </children>

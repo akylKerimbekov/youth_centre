@@ -45,4 +45,8 @@ public class AddTeenagerController {
         Stage stage  = (Stage) source.getScene().getWindow();
         stage.close();
     }
+
+    public void btnAddPersonCancel(ActionEvent actionEvent) {
+        closeStage(actionEvent);
+    }
 }
