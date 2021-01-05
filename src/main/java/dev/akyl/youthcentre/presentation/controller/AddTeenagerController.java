@@ -1,6 +1,7 @@
 package dev.akyl.youthcentre.presentation.controller;
 
 import dev.akyl.youthcentre.repository.entity.Teenager;
+import dev.akyl.youthcentre.service.TeenagerService;
 import javafx.beans.property.StringProperty;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -30,6 +31,7 @@ public class AddTeenagerController {
         data.setFirstName(name);
         appMainObservableList.add(data);
 
+        TeenagerService.getInstance().save(data);
         closeStage(actionEvent);
     }
 

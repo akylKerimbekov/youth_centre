@@ -222,5 +222,13 @@ public class Teenager implements Serializable {
         return caretakers;
     }
 
-
+    @Override
+    public String toString() {
+        return "Teenager{" +
+                "id=" + id.get() +
+                ", firstName=" + firstName.get() +
+                ", lastName=" + lastName.get() +
+                ", middleName=" + middleName.get() +
+                '}';
+    }
 }
