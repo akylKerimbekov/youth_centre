@@ -31,6 +31,7 @@ public class AddTeenagerController {
         data.setFirstName(name);
         appMainObservableList.add(data);
 
+
         TeenagerService.getInstance().save(data);
         closeStage(actionEvent);
     }

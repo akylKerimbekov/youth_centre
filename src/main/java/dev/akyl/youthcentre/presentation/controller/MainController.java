@@ -80,7 +80,15 @@ public class MainController implements Initializable {
 
         Teenager temp = teenager.getSelectionModel().getSelectedItem();
 
-        dialogController.setTfUpdName(temp.getFirstName());
+        dialogController.setTeenager(temp);
+        dialogController.setTfName(temp.getFirstName());
+        dialogController.setTfLastName(temp.getLastName());
+        dialogController.setTfMiddleName(temp.getMiddleName());
+        dialogController.setTfEmail(temp.getEmail());
+        dialogController.setTfINN(temp.getInn());
+        dialogController.setTfSex(temp.getSex());
+        dialogController.setTfAddress(temp.getAddress());
+        dialogController.setTfContact(temp.getContact());
 
         Scene scene = new Scene(parent, 500, 300);
         Stage stage = new Stage();
