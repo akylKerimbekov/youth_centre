@@ -1,5 +1,8 @@
 package dev.akyl.youthcentre.repository.entity;
 
+import dev.akyl.youthcentre.service.TeenagerService;
+import javafx.beans.binding.NumberBinding;
+import javafx.beans.binding.ObjectBinding;
 import javafx.beans.property.*;
 import javafx.collections.FXCollections;
 import lombok.Data;
@@ -10,6 +13,7 @@ import javax.persistence.*;
 import java.io.Serializable;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.time.Period;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
@@ -29,8 +33,8 @@ public class Teenager implements Serializable {
     private StringProperty sex = new SimpleStringProperty(this, "sex");
     private StringProperty address = new SimpleStringProperty(this, "address");
     private StringProperty contact = new SimpleStringProperty(this, "contact");
-    private ObjectProperty<LocalDateTime> created = new SimpleObjectProperty<>(this, "birthday");
-    private ObjectProperty<LocalDateTime> updated = new SimpleObjectProperty<>(this, "birthday");
+    private ObjectProperty<LocalDateTime> created = new SimpleObjectProperty<>(this, "created");
+    private ObjectProperty<LocalDateTime> updated = new SimpleObjectProperty<>(this, "updated");
     private ListProperty<Request> requests = new SimpleListProperty<>();//new ArrayList<>();
     private ListProperty<Caretaker> caretakers = new SimpleListProperty<>();//new ArrayList<>();
 
@@ -223,12 +227,40 @@ public class Teenager implements Serializable {
     }
 
     @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Teenager teenager = (Teenager) o;
+        return Objects.equals(id, teenager.id) &&
+                Objects.equals(firstName, teenager.firstName) &&
+                Objects.equals(lastName, teenager.lastName) &&
+                Objects.equals(middleName, teenager.middleName) &&
+                Objects.equals(email, teenager.email) &&
+                Objects.equals(birthday, teenager.birthday) &&
+                Objects.equals(inn, teenager.inn) &&
+                Objects.equals(sex, teenager.sex) &&
+                Objects.equals(address, teenager.address) &&
+                Objects.equals(contact, teenager.contact) &&
+                Objects.equals(created, teenager.created) &&
+                Objects.equals(updated, teenager.updated) &&
+                Objects.equals(requests, teenager.requests) &&
+                Objects.equals(caretakers, teenager.caretakers);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, firstName, lastName, middleName, email, birthday, inn, sex, address, contact, created, updated, requests, caretakers);
+    }
+
+    @Override
     public String toString() {
         return "Teenager{" +
                 "id=" + id.get() +
                 ", firstName=" + firstName.get() +
                 ", lastName=" + lastName.get() +
                 ", middleName=" + middleName.get() +
+                ", email=" + email.get() +
+                ", sex=" + sex.get() +
                 '}';
     }
 }

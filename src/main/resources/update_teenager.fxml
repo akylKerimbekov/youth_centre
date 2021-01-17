@@ -3,16 +3,13 @@
 <?import javafx.geometry.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
-<?import javafx.scene.text.Text?>
-<AnchorPane minHeight="300.0" minWidth="400.0" xmlns="http://javafx.com/javafx/8.0.111"
-            xmlns:fx="http://javafx.com/fxml/1"
-            fx:controller="dev.akyl.youthcentre.presentation.controller.UpdateTeenagerController">
+<?import javafx.scene.text.*?>
+
+<AnchorPane minHeight="300.0" minWidth="400.0" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="dev.akyl.youthcentre.presentation.controller.UpdateTeenagerController">
     <children>
-        <VBox alignment="CENTER" layoutX="131.0" layoutY="50.0" prefHeight="200.0" prefWidth="100.0"
-              AnchorPane.bottomAnchor="5.0" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="5.0"
-              AnchorPane.topAnchor="5.0">
+        <VBox alignment="CENTER" layoutX="131.0" layoutY="50.0" prefHeight="200.0" prefWidth="100.0" AnchorPane.bottomAnchor="5.0" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="5.0">
             <children>
-                <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Adding Person Dialog"/>
+                <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Изменить" />
                 <HBox alignment="CENTER" layoutX="10.0" layoutY="126.0" prefHeight="50.0" prefWidth="200.0" spacing="10.0">
                     <children>
                         <Label alignment="CENTER_RIGHT" minWidth="100.0" text="Фамилия" />
@@ -35,6 +32,15 @@
                     <children>
                         <Label alignment="CENTER_RIGHT" minWidth="100.0" text="Отчество" />
                         <TextField fx:id="tfMiddleName" HBox.hgrow="ALWAYS" />
+                    </children>
+                    <padding>
+                        <Insets right="30.0" />
+                    </padding>
+                </HBox>
+                <HBox alignment="CENTER" layoutX="10.0" layoutY="126.0" prefHeight="50.0" prefWidth="200.0" spacing="10.0">
+                    <children>
+                        <Label alignment="CENTER_RIGHT" minWidth="100.0" text="Дата рождения" />
+                        <DatePicker fx:id="dpBirthday" HBox.hgrow="ALWAYS" />
                     </children>
                     <padding>
                         <Insets right="30.0" />
@@ -87,14 +93,14 @@
                 </HBox>
                 <HBox alignment="CENTER_RIGHT">
                     <children>
-                        <Button mnemonicParsing="false" onAction="#btnUpdateTeenager" text="Изменить"/>
-                        <Button mnemonicParsing="false" onAction="#btnUpdateTeenagerCancel" text="Отменить"/>
+                        <Button mnemonicParsing="false" onAction="#btnUpdateTeenager" text="Изменить" />
+                        <Button mnemonicParsing="false" onAction="#btnUpdateTeenagerCancel" text="Отменить" />
                     </children>
                     <opaqueInsets>
-                        <Insets/>
+                        <Insets />
                     </opaqueInsets>
                     <padding>
-                        <Insets right="30.0"/>
+                        <Insets right="30.0" />
                     </padding>
                 </HBox>
             </children>

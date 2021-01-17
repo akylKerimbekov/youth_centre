@@ -15,8 +15,8 @@
                           <columns>
                               <TableColumn fx:id="teenFirstName" prefWidth="75.0" text="Имя" />
                               <TableColumn fx:id="teenLastName" prefWidth="75.0" text="Фамилия" />
-                              <TableColumn prefWidth="98.0" text="Дата рождения" />
-                              <TableColumn prefWidth="75.0" text="Пол" />
+                              <TableColumn fx:id="teenBirthday" prefWidth="98.0" text="Дата рождения" />
+                              <TableColumn fx:id="teenSex" prefWidth="75.0" text="Пол" />
                           </columns>
                           <VBox.margin>
                               <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />

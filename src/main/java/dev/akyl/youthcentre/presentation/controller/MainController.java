@@ -4,6 +4,9 @@ import dev.akyl.youthcentre.repository.entity.Request;
 import dev.akyl.youthcentre.repository.entity.Teenager;
 import dev.akyl.youthcentre.service.RequestService;
 import dev.akyl.youthcentre.service.TeenagerService;
+import javafx.beans.binding.Bindings;
+import javafx.beans.binding.ObjectBinding;
+import javafx.beans.property.SimpleIntegerProperty;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -18,6 +21,8 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 import java.net.URL;
+import java.time.LocalDate;
+import java.time.Period;
 import java.util.ResourceBundle;
 
 public class MainController implements Initializable {
@@ -28,6 +33,12 @@ public class MainController implements Initializable {
     private TableColumn<Teenager, String> teenFirstName;
     @FXML
     private TableColumn<Teenager, String> teenLastName;
+    @FXML
+    private TableColumn<Teenager, LocalDate> teenBirthday;
+    @FXML
+    private TableColumn<Teenager, String> teenSex;
+    @FXML
+    private TableColumn<Teenager, Integer> teenAge;
 
     @FXML
     TableView<Request> request;
@@ -40,6 +51,9 @@ public class MainController implements Initializable {
     public void initialize(URL url, ResourceBundle resourceBundle) {
         teenFirstName.setCellValueFactory(new PropertyValueFactory<Teenager, String>("firstName"));
         teenLastName.setCellValueFactory(new PropertyValueFactory<Teenager, String>("lastName"));
+        teenBirthday.setCellValueFactory(new PropertyValueFactory<Teenager, LocalDate>("birthday"));
+        teenSex.setCellValueFactory(new PropertyValueFactory<Teenager, String>("sex"));
+
         teenager.setItems(TeenagerService.getInstance().findAll());
         teenager.getSelectionModel().selectedItemProperty().addListener((obs, oldSelection, newSelection) -> {
             if (newSelection != null) {
@@ -79,16 +93,7 @@ public class MainController implements Initializable {
         UpdateTeenagerController dialogController = fxmlLoader.<UpdateTeenagerController>getController();
 
         Teenager temp = teenager.getSelectionModel().getSelectedItem();
-
         dialogController.setTeenager(temp);
-        dialogController.setTfName(temp.getFirstName());
-        dialogController.setTfLastName(temp.getLastName());
-        dialogController.setTfMiddleName(temp.getMiddleName());
-        dialogController.setTfEmail(temp.getEmail());
-        dialogController.setTfINN(temp.getInn());
-        dialogController.setTfSex(temp.getSex());
-        dialogController.setTfAddress(temp.getAddress());
-        dialogController.setTfContact(temp.getContact());
 
         Scene scene = new Scene(parent, 500, 300);
         Stage stage = new Stage();

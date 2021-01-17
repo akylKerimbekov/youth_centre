@@ -47,6 +47,7 @@ public class TeenagerService {
         Transaction transaction = null;
         try (Session session = HibernateUtil.getSessionFactory().openSession()) {
             System.out.println(session);
+            System.out.println(teenager);
             transaction = session.beginTransaction();
             System.out.println(transaction);
             session.persist(teenager);
@@ -55,6 +56,29 @@ public class TeenagerService {
             if (transaction != null) {
                 transaction.rollback();
             }
+            System.out.println(e.getMessage());
+            e.printStackTrace();
+        }
+        System.out.println(teenager);
+        return teenager;
+    }
+
+    @Transactional
+    public Teenager update(Teenager teenager) {
+        System.out.println(teenager);
+        Transaction transaction = null;
+        try (Session session = HibernateUtil.getSessionFactory().openSession()) {
+            System.out.println(session);
+            System.out.println(teenager);
+            transaction = session.beginTransaction();
+            System.out.println(transaction);
+            session.saveOrUpdate(teenager);
+            transaction.commit();
+        } catch (Exception e) {
+            if (transaction != null) {
+                transaction.rollback();
+            }
+            System.out.println(e.getMessage());
             e.printStackTrace();
         }
         System.out.println(teenager);
