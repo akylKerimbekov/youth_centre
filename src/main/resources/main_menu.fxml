@@ -1,23 +1,23 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
-
-<VBox fx:id="vbox" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="dev.akyl.youthcentre.presentation.controller.MainMenuController">
+<?import javafx.scene.layout.VBox?>
+<VBox fx:id="vbox" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1"
+      fx:controller="dev.akyl.youthcentre.presentation.controller.MainMenuController">
     <MenuBar id="menuBar" focusTraversable="true">
         <menus>
             <Menu text="Справочники">
                 <items>
-                    <MenuItem text="Психо-активные вещества" />
-                    <MenuItem text="Трудная жизнь" />
-                    <SeparatorMenuItem />
-                    <MenuItem text="Exit" />
+                    <MenuItem onAction="#openPsychoActive" text="Психо-активные вещества"/>
+                    <MenuItem text="Трудная жизнь"/>
+                    <SeparatorMenuItem/>
+                    <MenuItem text="Exit"/>
                 </items>
             </Menu>
             <Menu text="Help">
                 <items>
-                    <MenuItem onAction="#generate" text="Генерация тестового набора" />
-                    <MenuItem text="About" />
+                    <MenuItem onAction="#generate" text="Генерация тестового набора"/>
+                    <MenuItem text="About"/>
                 </items>
             </Menu>
         </menus>

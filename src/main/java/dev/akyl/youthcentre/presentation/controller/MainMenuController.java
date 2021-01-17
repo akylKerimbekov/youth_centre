@@ -6,4 +6,8 @@ public class MainMenuController {
     public void generate(ActionEvent actionEvent) {
 
     }
+
+    public void openPsychoActive(ActionEvent actionEvent) {
+
+    }
 }
