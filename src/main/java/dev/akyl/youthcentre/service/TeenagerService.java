@@ -30,14 +30,14 @@ public class TeenagerService {
 
     @Transactional
     public ObservableList<Teenager> findAll() {
-        List<Teenager> students = null;
+        List<Teenager> teenagerList = null;
         try (Session session = HibernateUtil.getSessionFactory().openSession()) {
-            students = session.createQuery("from Teenager", Teenager.class).list();
-            students.forEach(s -> System.out.println(s));
+            teenagerList = session.createQuery("from Teenager", Teenager.class).list();
+            teenagerList.forEach(s -> System.out.println(s));
         } catch (Exception e) {
             e.printStackTrace();
         }
-        teenagers = FXCollections.observableArrayList(students);
+        teenagers = FXCollections.observableArrayList(teenagerList);
         return teenagers;
     }
 

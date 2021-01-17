@@ -6,6 +6,8 @@ import javafx.beans.binding.ObjectBinding;
 import javafx.beans.property.*;
 import javafx.collections.FXCollections;
 import lombok.Data;
+import lombok.EqualsAndHashCode;
+import lombok.ToString;
 import org.hibernate.annotations.LazyCollection;
 import org.hibernate.annotations.LazyCollectionOption;
 
@@ -21,6 +23,8 @@ import java.util.Objects;
 @Entity
 @Table(name = "TEENAGER")
 @Access(value = AccessType.PROPERTY)
+@EqualsAndHashCode
+@ToString
 public class Teenager implements Serializable {
 
     private LongProperty id = new SimpleLongProperty(this, "id");
@@ -224,43 +228,5 @@ public class Teenager implements Serializable {
 
     public ListProperty caretakersProperty(){
         return caretakers;
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        Teenager teenager = (Teenager) o;
-        return Objects.equals(id, teenager.id) &&
-                Objects.equals(firstName, teenager.firstName) &&
-                Objects.equals(lastName, teenager.lastName) &&
-                Objects.equals(middleName, teenager.middleName) &&
-                Objects.equals(email, teenager.email) &&
-                Objects.equals(birthday, teenager.birthday) &&
-                Objects.equals(inn, teenager.inn) &&
-                Objects.equals(sex, teenager.sex) &&
-                Objects.equals(address, teenager.address) &&
-                Objects.equals(contact, teenager.contact) &&
-                Objects.equals(created, teenager.created) &&
-                Objects.equals(updated, teenager.updated) &&
-                Objects.equals(requests, teenager.requests) &&
-                Objects.equals(caretakers, teenager.caretakers);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(id, firstName, lastName, middleName, email, birthday, inn, sex, address, contact, created, updated, requests, caretakers);
-    }
-
-    @Override
-    public String toString() {
-        return "Teenager{" +
-                "id=" + id.get() +
-                ", firstName=" + firstName.get() +
-                ", lastName=" + lastName.get() +
-                ", middleName=" + middleName.get() +
-                ", email=" + email.get() +
-                ", sex=" + sex.get() +
-                '}';
     }
 }

@@ -55,12 +55,12 @@
                       </TableView>
                       <HBox prefHeight="38.0" prefWidth="817.0">
                           <children>
-                              <Button mnemonicParsing="false" text="Добавить">
+                              <Button mnemonicParsing="false" onAction="#addRequest" text="Добавить" wrapText="true">
                                   <HBox.margin>
                                       <Insets left="550.0" right="15.0" />
                                   </HBox.margin>
                               </Button>
-                              <Button mnemonicParsing="false" text="Изменить">
+                              <Button mnemonicParsing="false" onAction="#updateRequest" text="Изменить" wrapText="true">
                                   <HBox.margin>
                                       <Insets left="10.0" right="15.0" />
                                   </HBox.margin>

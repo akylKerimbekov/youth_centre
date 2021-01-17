@@ -101,4 +101,25 @@ public class MainController implements Initializable {
         stage.setScene(scene);
         stage.showAndWait();
     }
+
+    @FXML
+    public void addRequest(ActionEvent actionEvent) throws IOException {
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/add_request.fxml"));
+        Parent parent = fxmlLoader.load();
+        AddRequestController dialogController = fxmlLoader.<AddRequestController>getController();
+        dialogController.setAppRequestObservableList(RequestService.getInstance().getRequests());
+        Teenager temp = teenager.getSelectionModel().getSelectedItem();
+        dialogController.setTeenager(temp);
+
+        Scene scene = new Scene(parent, 500, 300);
+        Stage stage = new Stage();
+        stage.initModality(Modality.APPLICATION_MODAL);
+        stage.setScene(scene);
+        stage.showAndWait();
+    }
+
+    @FXML
+    public void updateRequest(ActionEvent actionEvent) {
+
+    }
 }

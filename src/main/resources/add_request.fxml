@@ -13,6 +13,15 @@
                <VBox.margin>
                   <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                </VBox.margin></Text>
+                <HBox alignment="CENTER" layoutX="10.0" layoutY="126.0" prefHeight="50.0" prefWidth="200.0" spacing="10.0">
+                    <children>
+                        <Label alignment="CENTER_RIGHT" minWidth="100.0" text="Номер" />
+                        <TextField fx:id="tfNum" HBox.hgrow="ALWAYS" />
+                    </children>
+                    <padding>
+                        <Insets right="30.0" />
+                    </padding>
+                </HBox>
                 <HBox alignment="CENTER" layoutX="10.0" layoutY="126.0" prefHeight="100.0" prefWidth="200.0" spacing="10.0">
                     <children>
                         <Label alignment="CENTER_RIGHT" minWidth="100.0" text="Зависимость" />
