@@ -20,7 +20,6 @@ public class MainMenuController {
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/psycho_reference.fxml"));
         Parent parent = fxmlLoader.load();
         PsychoReferenceController dialogController = fxmlLoader.<PsychoReferenceController>getController();
-        //dialogController.setAppRequestObservableList(RequestService.getInstance().getRequests());
 
         Scene scene = new Scene(parent, 800, 500);
         Stage stage = new Stage();
@@ -33,6 +32,18 @@ public class MainMenuController {
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/hardlife_reference.fxml"));
         Parent parent = fxmlLoader.load();
         HardLifeController dialogController = fxmlLoader.<HardLifeController>getController();
+
+        Scene scene = new Scene(parent, 800, 500);
+        Stage stage = new Stage();
+        stage.initModality(Modality.APPLICATION_MODAL);
+        stage.setScene(scene);
+        stage.showAndWait();
+    }
+
+    public void openDeliveryService(ActionEvent actionEvent) throws IOException {
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/deliveryservice_reference.fxml"));
+        Parent parent = fxmlLoader.load();
+        DeliveryServiceController dialogController = fxmlLoader.<DeliveryServiceController>getController();
 
         Scene scene = new Scene(parent, 800, 500);
         Stage stage = new Stage();

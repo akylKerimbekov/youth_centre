@@ -10,6 +10,7 @@
                 <items>
                     <MenuItem onAction="#openPsychoActive" text="Психо-активные вещества"/>
                     <MenuItem onAction="#openHardLife" text="Трудная жизнь"/>
+                    <MenuItem onAction="#openDeliveryService" text="Услуги"/>
                     <SeparatorMenuItem/>
                     <MenuItem text="Exit"/>
                 </items>
