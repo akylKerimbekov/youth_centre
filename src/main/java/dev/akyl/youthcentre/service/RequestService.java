@@ -44,16 +44,16 @@ public class RequestService {
 
     @Transactional
     public ObservableList<Request> findByTeenagerId(Long teenagerId){
-        List<Request> students = null;
+        List<Request> requestList = null;
         try (Session session = HibernateUtil.getSessionFactory().openSession()) {
-            students = session.createQuery("from Request where teenagerId = :teenagerId", Request.class)
+            requestList = session.createQuery("from Request where teenagerId = :teenagerId", Request.class)
                     .setParameter("teenagerId", teenagerId)
                     .list();
-            students.forEach(s -> System.out.println(s));
+            requestList.forEach(s -> System.out.println(s));
         } catch (Exception e) {
             e.printStackTrace();
         }
-        requests = FXCollections.observableArrayList(students);
+        requests = FXCollections.observableArrayList(requestList);
         return requests;
     }
 
