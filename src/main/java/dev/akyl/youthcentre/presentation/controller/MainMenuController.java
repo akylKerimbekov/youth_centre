@@ -28,4 +28,16 @@ public class MainMenuController {
         stage.setScene(scene);
         stage.showAndWait();
     }
+
+    public void openHardLife(ActionEvent actionEvent) throws IOException {
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/hardlife_reference.fxml"));
+        Parent parent = fxmlLoader.load();
+        HardLifeController dialogController = fxmlLoader.<HardLifeController>getController();
+
+        Scene scene = new Scene(parent, 800, 500);
+        Stage stage = new Stage();
+        stage.initModality(Modality.APPLICATION_MODAL);
+        stage.setScene(scene);
+        stage.showAndWait();
+    }
 }

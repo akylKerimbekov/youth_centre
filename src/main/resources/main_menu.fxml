@@ -9,7 +9,7 @@
             <Menu text="Справочники">
                 <items>
                     <MenuItem onAction="#openPsychoActive" text="Психо-активные вещества"/>
-                    <MenuItem text="Трудная жизнь"/>
+                    <MenuItem onAction="#openHardLife" text="Трудная жизнь"/>
                     <SeparatorMenuItem/>
                     <MenuItem text="Exit"/>
                 </items>

@@ -1,6 +1,8 @@
 package dev.akyl.youthcentre.presentation.controller;
 
+import dev.akyl.youthcentre.repository.entity.HardLifeRef;
 import dev.akyl.youthcentre.repository.entity.PsychoActiveRef;
+import dev.akyl.youthcentre.service.HardLifeService;
 import dev.akyl.youthcentre.service.PsychoActiveReferenceService;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.ObservableList;
@@ -20,42 +22,62 @@ import java.net.URL;
 import java.time.LocalDateTime;
 import java.util.ResourceBundle;
 
-public class PsychoReferenceController implements Initializable {
+public class HardLifeController implements Initializable {
 
     @FXML
-    private TableView tvPsychoActiveRef;
+    private TableView<HardLifeRef> tvHardLife;
     @FXML
-    private TableColumn<PsychoActiveRef, String> psychoId;
+    private TableColumn<HardLifeRef, String> hardLifeId;
     @FXML
-    private TableColumn<PsychoActiveRef, String> psychoCode;
+    private TableColumn<HardLifeRef, String> hardLifeCode;
     @FXML
-    private TableColumn<PsychoActiveRef, String> psychoDetail;
+    private TableColumn<HardLifeRef, String> hardLifeDetail;
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        tvPsychoActiveRef.setEditable(true);
-        Callback<TableColumn<PsychoActiveRef, String>, TableCell<PsychoActiveRef, String>> cellFactory =
-                (TableColumn<PsychoActiveRef, String> param) -> new EditingCell();
+        tvHardLife.setEditable(true);
+        Callback<TableColumn<HardLifeRef, String>, TableCell<HardLifeRef, String>> cellFactory =
+                (TableColumn<HardLifeRef, String> param) -> new EditingCell();
 
-        psychoId.setCellValueFactory(new PropertyValueFactory<PsychoActiveRef, String>("id"));
-        psychoCode.setCellValueFactory(new PropertyValueFactory<PsychoActiveRef, String>("code"));
-        psychoCode.setCellFactory(cellFactory);
-        psychoCode.setOnEditCommit(
-                (TableColumn.CellEditEvent<PsychoActiveRef, String> t) -> {
-                    ((PsychoActiveRef) t.getTableView()
+        hardLifeId.setCellValueFactory(new PropertyValueFactory<HardLifeRef, String>("id"));
+        hardLifeCode.setCellValueFactory(new PropertyValueFactory<HardLifeRef, String>("code"));
+        hardLifeCode.setCellFactory(cellFactory);
+        hardLifeCode.setOnEditCommit(
+                (TableColumn.CellEditEvent<HardLifeRef, String> t) -> {
+                    ((HardLifeRef) t.getTableView()
                             .getItems()
                             .get(t.getTablePosition().getRow())).setCode(t.getNewValue());
                 });
-        psychoDetail.setCellValueFactory(new PropertyValueFactory<PsychoActiveRef, String>("detail"));
-        psychoDetail.setCellFactory(cellFactory);
-        psychoDetail.setOnEditCommit(
-                (TableColumn.CellEditEvent<PsychoActiveRef, String> t) -> {
-                    ((PsychoActiveRef) t.getTableView()
+        hardLifeDetail.setCellValueFactory(new PropertyValueFactory<HardLifeRef, String>("detail"));
+        hardLifeDetail.setCellFactory(cellFactory);
+        hardLifeDetail.setOnEditCommit(
+                (TableColumn.CellEditEvent<HardLifeRef, String> t) -> {
+                    ((HardLifeRef) t.getTableView()
                             .getItems()
                             .get(t.getTablePosition().getRow())).setDetail(t.getNewValue());
                 });
 
-        tvPsychoActiveRef.setItems(PsychoActiveReferenceService.getInstance().findAll());
+        tvHardLife.setItems(HardLifeService.getInstance().findAll());
+    }
+
+    public void addRow(ActionEvent actionEvent) {
+        HardLifeRef hardLifeRef = new HardLifeRef();
+        ObservableList<HardLifeRef> list = HardLifeService.getInstance().getHardLifeRefObservableList();
+        list.add(hardLifeRef);
+    }
+
+    public void saveRow(ActionEvent actionEvent) {
+        for (HardLifeRef hardLifeRef: HardLifeService.getInstance().getHardLifeRefObservableList()) {
+            if (hardLifeRef.getId() == 0) {
+                hardLifeRef.setCreated(LocalDateTime.now());
+                hardLifeRef.setUpdated(LocalDateTime.now());
+                HardLifeService.getInstance().save(hardLifeRef);
+                System.out.println(hardLifeRef);
+            } else  {
+                hardLifeRef.setUpdated(LocalDateTime.now());
+                HardLifeService.getInstance().update(hardLifeRef);
+            }
+        }
     }
 
     public void btnClose(ActionEvent actionEvent) {
@@ -68,27 +90,7 @@ public class PsychoReferenceController implements Initializable {
         stage.close();
     }
 
-    public void addRow(ActionEvent actionEvent) {
-        PsychoActiveRef psychoActiveRef = new PsychoActiveRef();
-        ObservableList<PsychoActiveRef> list = PsychoActiveReferenceService.getInstance().getPsychoActiveReferences();
-        list.add(psychoActiveRef);
-    }
-
-    public void saveRow(ActionEvent actionEvent) {
-        for (PsychoActiveRef psychoActive: PsychoActiveReferenceService.getInstance().getPsychoActiveReferences()) {
-            if (psychoActive.getId() == 0) {
-                psychoActive.setCreated(LocalDateTime.now());
-                psychoActive.setUpdated(LocalDateTime.now());
-                PsychoActiveReferenceService.getInstance().save(psychoActive);
-                System.out.println(psychoActive);
-            } else  {
-                psychoActive.setUpdated(LocalDateTime.now());
-                PsychoActiveReferenceService.getInstance().update(psychoActive);
-            }
-        }
-    }
-
-    class EditingCell extends TableCell<PsychoActiveRef, String> {
+    class EditingCell extends TableCell<HardLifeRef, String> {
 
         private TextField textField;
 
@@ -152,4 +154,5 @@ public class PsychoReferenceController implements Initializable {
             return getItem() == null ? "" : getItem();
         }
     }
+
 }

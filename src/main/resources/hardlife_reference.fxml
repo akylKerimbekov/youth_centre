@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<AnchorPane prefHeight="500.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/10.0.2-internal"
+            xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="dev.akyl.youthcentre.presentation.controller.HardLifeController">
+    <children>
+        <VBox alignment="CENTER" layoutX="131.0" layoutY="50.0" prefHeight="500.0" prefWidth="800.0"
+              AnchorPane.bottomAnchor="5.0" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="5.0"
+              AnchorPane.topAnchor="1.0">
+            <children>
+                <TableView fx:id="tvHardLife" prefHeight="421.0" prefWidth="770.0">
+                    <columns>
+                        <TableColumn fx:id="hardLifeId" prefWidth="75.0" text="Id"/>
+                        <TableColumn fx:id="hardLifeCode" prefWidth="75.0" text="Код"/>
+                        <TableColumn fx:id="hardLifeDetail" prefWidth="600.0" text="Описание"/>
+                    </columns>
+                    <VBox.margin>
+                        <Insets bottom="10.0" left="10.0" right="10.0" top="10.0"/>
+                    </VBox.margin>
+                </TableView>
+                <HBox alignment="CENTER_RIGHT">
+                    <children>
+                        <Button mnemonicParsing="false" onAction="#addRow" text="Добавить">
+                            <HBox.margin>
+                                <Insets right="10.0"/>
+                            </HBox.margin>
+                        </Button>
+                        <Button mnemonicParsing="false" onAction="#saveRow" text="Сохранить">
+                            <HBox.margin>
+                                <Insets right="10.0"/>
+                            </HBox.margin>
+                        </Button>
+                        <Button mnemonicParsing="false" onAction="#btnClose" text="Закрыть"/>
+                    </children>
+                    <opaqueInsets>
+                        <Insets/>
+                    </opaqueInsets>
+                    <padding>
+                        <Insets right="30.0"/>
+                    </padding>
+                    <VBox.margin>
+                        <Insets bottom="10.0" left="10.0" right="10.0" top="10.0"/>
+                    </VBox.margin>
+                </HBox>
+            </children>
+        </VBox>
+    </children>
+</AnchorPane>
