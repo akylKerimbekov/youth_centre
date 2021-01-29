@@ -75,6 +75,7 @@ public class MainController implements Initializable {
             if (newSelection != null) {
                 System.out.println("teenager");
                 request.setItems(RequestService.getInstance().findByTeenagerId(newSelection.getId()));
+                request.refresh();
             }
         });
 
