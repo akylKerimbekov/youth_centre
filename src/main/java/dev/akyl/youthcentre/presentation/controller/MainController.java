@@ -81,7 +81,7 @@ public class MainController implements Initializable {
 
         requestNum.setCellValueFactory(new PropertyValueFactory<Request, String>("number"));
         requestAddiction.setCellValueFactory(new PropertyValueFactory<Request, String>("addiction"));
-        requestConsult.setCellValueFactory(new PropertyValueFactory<Request, String>("consult"));
+        requestConsult.setCellValueFactory(new PropertyValueFactory<Request, String>("consultation"));
         requestDeviation.setCellValueFactory(new PropertyValueFactory<Request, String>("deviation"));
         requestSupport.setCellValueFactory(new PropertyValueFactory<Request, String>("support"));
         requestHardLife.setCellValueFactory(new PropertyValueFactory<Request, HardLifeRef>("hardLifeRef"));
