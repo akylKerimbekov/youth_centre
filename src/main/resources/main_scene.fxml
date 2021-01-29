@@ -46,8 +46,14 @@
                   <children>
                       <TableView fx:id="request" prefHeight="298.0" prefWidth="817.0">
                           <columns>
-                              <TableColumn fx:id="requestId" prefWidth="75.0" text="Номер" />
-                              <TableColumn fx:id="requestNum" prefWidth="75.0" text="C2" />
+                              <TableColumn fx:id="requestNum" prefWidth="40.0" text="№" />
+                              <TableColumn fx:id="requestHardLife" prefWidth="75.0" text="ТЖС" />
+                              <TableColumn fx:id="requestPsychoActive" prefWidth="75.0" text="ПАВ" />
+                              <TableColumn fx:id="requestAddiction" prefWidth="120.0" text="Зависимость" />
+                              <TableColumn fx:id="requestDeviation" prefWidth="120.0" text="Девиации" />
+                              <TableColumn fx:id="requestConsult" prefWidth="120.0" text="Консультация" />
+                              <TableColumn fx:id="requestSupport" prefWidth="120.0" text="Сопровождение" />
+                              <TableColumn fx:id="requestDeliveryService" prefWidth="100.0" text="Вид услуги" />
                           </columns>
                           <VBox.margin>
                               <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
