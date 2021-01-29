@@ -9,9 +9,11 @@ import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
+import javafx.stage.Stage;
 import javafx.util.StringConverter;
 
 import java.net.URL;
@@ -107,7 +109,9 @@ public class UpdateRequestController implements Initializable {
         taConsultation.setText(request.getConsultation());
         taDeviation.setText(request.getDeviation());
         taSupport.setText(request.getSupport());
-
+        cbDeliveryService.getSelectionModel().select(request.getDeliveryServiceRef());
+        cbHardLife.getSelectionModel().select(request.getHardLifeRef());
+        cbPsychoActive.getSelectionModel().select(request.getPsychoActiveRef());
     }
 
     public void setAppRequestObservableList(ObservableList<Request> appRequestObservableList) {
@@ -115,11 +119,26 @@ public class UpdateRequestController implements Initializable {
     }
 
     public void btnUpdateRequest(ActionEvent actionEvent) {
-
+        request.setNumber(tfNum.getText());
+        request.setAddiction(taAddiction.getText());
+        request.setConsultation(taConsultation.getText());
+        request.setDeviation(taDeviation.getText());
+        request.setSupport(taSupport.getText());
+        request.setDeliveryServiceRef(cbDeliveryService.getSelectionModel().getSelectedItem());
+        request.setHardLifeRef(cbHardLife.getSelectionModel().getSelectedItem());
+        request.setPsychoActiveRef(cbPsychoActive.getSelectionModel().getSelectedItem());
+        RequestService.getInstance().update(request);
+        closeStage(actionEvent);
     }
 
     public void btnCancelRequest(ActionEvent actionEvent) {
+        closeStage(actionEvent);
+    }
 
+    private void closeStage(ActionEvent event) {
+        Node source = (Node) event.getSource();
+        Stage stage = (Stage) source.getScene().getWindow();
+        stage.close();
     }
 
 }

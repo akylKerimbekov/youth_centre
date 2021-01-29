@@ -78,4 +78,26 @@ public class RequestService {
         System.out.println(request);
         return request;
     }
+
+    @Transactional
+    public Request update(Request request) {
+        System.out.println(request);
+        Transaction transaction = null;
+        try (Session session = HibernateUtil.getSessionFactory().openSession()) {
+            System.out.println(session);
+            System.out.println(request);
+            transaction = session.beginTransaction();
+            System.out.println(transaction);
+            session.saveOrUpdate(request);
+            transaction.commit();
+        } catch (Exception e) {
+            if (transaction != null) {
+                transaction.rollback();
+            }
+            System.out.println(e.getMessage());
+            e.printStackTrace();
+        }
+        System.out.println(request);
+        return request;
+    }
 }

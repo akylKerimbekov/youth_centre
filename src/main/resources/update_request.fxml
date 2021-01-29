@@ -120,7 +120,7 @@
                 </HBox>
                 <HBox alignment="CENTER_RIGHT">
                     <children>
-                        <Button mnemonicParsing="false" onAction="#btnUpdateRequest" text="Добавить"/>
+                        <Button mnemonicParsing="false" onAction="#btnUpdateRequest" text="Изменить"/>
                         <Button mnemonicParsing="false" onAction="#btnCancelRequest" text="Отменить"/>
                     </children>
                     <opaqueInsets>
