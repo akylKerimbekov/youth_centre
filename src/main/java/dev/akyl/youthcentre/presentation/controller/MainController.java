@@ -188,7 +188,17 @@ public class MainController implements Initializable {
     }
 
     @FXML
-    public void updateRequest(ActionEvent actionEvent) {
+    public void updateRequest(ActionEvent actionEvent) throws IOException {
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/update_request.fxml"));
+        Parent parent = fxmlLoader.load();
+        UpdateRequestController dialogController = fxmlLoader.<UpdateRequestController>getController();
+        dialogController.setAppRequestObservableList(RequestService.getInstance().getRequests());
+        dialogController.setRequest(request.getSelectionModel().getSelectedItem());
 
+        Scene scene = new Scene(parent, 500, 500);
+        Stage stage = new Stage();
+        stage.initModality(Modality.APPLICATION_MODAL);
+        stage.setScene(scene);
+        stage.showAndWait();
     }
 }
