@@ -1,45 +1,173 @@
 package dev.akyl.youthcentre.repository.entity;
 
-import lombok.Data;
+import javafx.beans.property.*;
+import lombok.EqualsAndHashCode;
+import lombok.ToString;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
 
 @Entity
 @Table(name = "SURVEY_REF")
-@Data
+@Access(value = AccessType.PROPERTY)
+@EqualsAndHashCode
+@ToString
 public class SurveyRef {
+
+    private LongProperty id = new SimpleLongProperty(this, "id");
+    private LongProperty parentId = new SimpleLongProperty(this, "parentId");
+    private StringProperty code = new SimpleStringProperty(this, "code");
+    private StringProperty detail = new SimpleStringProperty(this, "detail");
+    private BooleanProperty numField = new SimpleBooleanProperty(this, "numField");
+    private BooleanProperty strField = new SimpleBooleanProperty(this, "strField");
+    private BooleanProperty boolField = new SimpleBooleanProperty(this, "boolField");
+    private BooleanProperty refField = new SimpleBooleanProperty(this, "refField");
+    private ObjectProperty<LocalDateTime> created = new SimpleObjectProperty<>(this, "created");
+    private ObjectProperty<LocalDateTime> updated = new SimpleObjectProperty<>(this, "updated");
+    private IntegerProperty version = new SimpleIntegerProperty(this, "version");
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
-    private Long id;
+    public long getId() {
+        return id.get();
+    }
+
+    public LongProperty idProperty() {
+        return id;
+    }
+
+    public void setId(long id) {
+        this.id.set(id);
+    }
+
+    @Column(name = "parent_id")
+    public long getParentId() {
+        return parentId.get();
+    }
+
+    public LongProperty parentIdProperty() {
+        return parentId;
+    }
+
+    public void setParentId(long parentId) {
+        this.parentId.set(parentId);
+    }
 
     @Column(name = "code")
-    private String code;
+    public String getCode() {
+        return code.get();
+    }
+
+    public StringProperty codeProperty() {
+        return code;
+    }
+
+    public void setCode(String code) {
+        this.code.set(code);
+    }
 
     @Column(name = "detail")
-    private String detail;
+    public String getDetail() {
+        return detail.get();
+    }
+
+    public StringProperty detailProperty() {
+        return detail;
+    }
+
+    public void setDetail(String detail) {
+        this.detail.set(detail);
+    }
 
     @Column(name = "is_number")
-    private Boolean isNumber;
+    public Boolean getNumField() {
+        return numField.get();
+    }
+
+    public BooleanProperty numFieldProperty() {
+        return numField;
+    }
+
+    public void setNumField(Boolean numField) {
+        this.numField.set(numField);
+    }
 
     @Column(name = "is_string")
-    private Boolean isString;
+    public Boolean getStrField() {
+        return strField.get();
+    }
+
+    public BooleanProperty strFieldProperty() {
+        return strField;
+    }
+
+    public void setStrField(Boolean strField) {
+        this.strField.set(strField);
+    }
 
     @Column(name = "is_boolean")
-    private Boolean isBoolean;
+    public Boolean getBoolField() {
+        return boolField.get();
+    }
+
+    public BooleanProperty boolFieldProperty() {
+        return boolField;
+    }
+
+    public void setBoolField(Boolean boolField) {
+        this.boolField.set(boolField);
+    }
 
     @Column(name = "is_reference")
-    private Boolean isReference;
+    public Boolean getRefField() {
+        return refField.get();
+    }
+
+    public BooleanProperty refFieldProperty() {
+        return refField;
+    }
+
+    public void setRefField(Boolean refField) {
+        this.refField.set(refField);
+    }
 
     @Column(name = "created")
-    private LocalDateTime created;
+    public LocalDateTime getCreated() {
+        return created.get();
+    }
+
+    public ObjectProperty<LocalDateTime> createdProperty() {
+        return created;
+    }
+
+    public void setCreated(LocalDateTime created) {
+        this.created.set(created);
+    }
 
     @Column(name = "updated")
-    private LocalDateTime updated;
+    public LocalDateTime getUpdated() {
+        return updated.get();
+    }
 
-    @Version
+    public ObjectProperty<LocalDateTime> updatedProperty() {
+        return updated;
+    }
+
+    public void setUpdated(LocalDateTime updated) {
+        this.updated.set(updated);
+    }
+
     @Column(name = "version")
-    private Integer version;
+    public int getVersion() {
+        return version.get();
+    }
+
+    public IntegerProperty versionProperty() {
+        return version;
+    }
+
+    public void setVersion(int version) {
+        this.version.set(version);
+    }
 }
