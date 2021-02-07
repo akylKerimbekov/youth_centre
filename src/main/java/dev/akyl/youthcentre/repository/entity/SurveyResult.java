@@ -17,11 +17,12 @@ public class SurveyResult {
 
     private LongProperty id = new SimpleLongProperty(this, "id");
     private ObjectProperty<SurveyRef> surveyRef = new SimpleObjectProperty<>(this, "surveyRef");
-    private ObjectProperty<Survey> survey = new SimpleObjectProperty<>(this, "survey");
-    private StringProperty value = new SimpleStringProperty(this, "vavlue");
+    private StringProperty value = new SimpleStringProperty(this, "value");
     private ObjectProperty<LocalDateTime> created = new SimpleObjectProperty<>(this, "created");
     private ObjectProperty<LocalDateTime> updated = new SimpleObjectProperty<>(this, "updated");
     private IntegerProperty version = new SimpleIntegerProperty(this, "version");
+    private ObjectProperty<Teenager> teenager = new SimpleObjectProperty<>(this, "teenager");
+    private BooleanProperty actual = new SimpleBooleanProperty(this, "actual");
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -50,20 +51,6 @@ public class SurveyResult {
 
     public void setSurveyRef(SurveyRef surveyRef) {
         this.surveyRef.set(surveyRef);
-    }
-
-    @ManyToOne(targetEntity = Survey.class)
-    @JoinColumn(name = "survey_id", referencedColumnName = "id")
-    public Survey getSurvey() {
-        return survey.get();
-    }
-
-    public ObjectProperty<Survey> surveyProperty() {
-        return survey;
-    }
-
-    public void setSurvey(Survey survey) {
-        this.survey.set(survey);
     }
 
     @Column(name = "value")
@@ -116,5 +103,32 @@ public class SurveyResult {
 
     public void setVersion(int version) {
         this.version.set(version);
+    }
+
+    @ManyToOne(targetEntity = Teenager.class)
+    @JoinColumn(name = "teenager_id", referencedColumnName = "id")
+    public Teenager getTeenager() {
+        return teenager.get();
+    }
+
+    public ObjectProperty<Teenager> teenagerProperty() {
+        return teenager;
+    }
+
+    public void setTeenager(Teenager teenager) {
+        this.teenager.set(teenager);
+    }
+
+    @Column(name = "actual")
+    public boolean getActual() {
+        return actual.get();
+    }
+
+    public BooleanProperty actualProperty() {
+        return actual;
+    }
+
+    public void setActual(boolean actual) {
+        this.actual.set(actual);
     }
 }

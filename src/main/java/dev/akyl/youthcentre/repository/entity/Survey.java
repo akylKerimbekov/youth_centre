@@ -13,6 +13,7 @@ import java.time.LocalDateTime;
 @Access(value = AccessType.PROPERTY)
 @EqualsAndHashCode
 @ToString
+@Deprecated
 public class Survey {
 
     private LongProperty id = new SimpleLongProperty(this, "id");

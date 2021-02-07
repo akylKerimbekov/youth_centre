@@ -31,6 +31,9 @@ import java.util.ResourceBundle;
 public class MainController implements Initializable {
 
     @FXML
+    private TreeTableView<SurveyResultItem> survey;
+
+    @FXML
     private TableView<Teenager> teenager;
     @FXML
     private TableColumn<Teenager, String> teenFirstName;
@@ -140,6 +143,7 @@ public class MainController implements Initializable {
                 teenager.getSelectionModel().clearSelection();
             }
         });
+
     }
 
     @FXML
@@ -200,5 +204,11 @@ public class MainController implements Initializable {
         stage.initModality(Modality.APPLICATION_MODAL);
         stage.setScene(scene);
         stage.showAndWait();
+    }
+
+    private void fullFillSurveyResultTree() {
+        TreeItem<SurveyResultItem> root = new TreeItem<>(new SurveyResultItem());
+        TreeItem<SurveyResultItem> chapter = new TreeItem<>(new SurveyResultItem());
+
     }
 }
