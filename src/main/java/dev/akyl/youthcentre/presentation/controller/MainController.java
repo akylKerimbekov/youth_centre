@@ -2,13 +2,9 @@ package dev.akyl.youthcentre.presentation.controller;
 
 import dev.akyl.youthcentre.repository.entity.*;
 import dev.akyl.youthcentre.service.RequestService;
+import dev.akyl.youthcentre.service.SurveyRefService;
+import dev.akyl.youthcentre.service.SurveyResultService;
 import dev.akyl.youthcentre.service.TeenagerService;
-import javafx.beans.binding.Bindings;
-import javafx.beans.binding.ObjectBinding;
-import javafx.beans.property.ReadOnlyObjectWrapper;
-import javafx.beans.property.SimpleIntegerProperty;
-import javafx.beans.property.SimpleStringProperty;
-import javafx.beans.value.ObservableValue;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -17,6 +13,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.control.cell.TreeItemPropertyValueFactory;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.util.Callback;
@@ -24,14 +21,19 @@ import javafx.util.Callback;
 import java.io.IOException;
 import java.net.URL;
 import java.time.LocalDate;
-import java.time.Period;
-import java.util.Arrays;
+import java.util.List;
 import java.util.ResourceBundle;
 
 public class MainController implements Initializable {
 
     @FXML
     private TreeTableView<SurveyResultItem> survey;
+    @FXML
+    TreeTableColumn<SurveyResultItem, String> surveyChapter;
+    @FXML
+    TreeTableColumn<SurveyResultItem, String> surveyQuestion;
+    @FXML
+    TreeTableColumn<SurveyResultItem, String> surveyAnswer;
 
     @FXML
     private TableView<Teenager> teenager;
@@ -68,6 +70,11 @@ public class MainController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+
+        surveyChapter.setCellValueFactory(new TreeItemPropertyValueFactory<SurveyResultItem, String>("chapter"));
+        surveyQuestion.setCellValueFactory(new TreeItemPropertyValueFactory<SurveyResultItem, String>("question"));
+        surveyAnswer.setCellValueFactory(new TreeItemPropertyValueFactory<SurveyResultItem, String>("answer"));
+
         teenFirstName.setCellValueFactory(new PropertyValueFactory<Teenager, String>("firstName"));
         teenLastName.setCellValueFactory(new PropertyValueFactory<Teenager, String>("lastName"));
         teenBirthday.setCellValueFactory(new PropertyValueFactory<Teenager, LocalDate>("birthday"));
@@ -81,6 +88,11 @@ public class MainController implements Initializable {
                 request.refresh();
             }
         });
+        teenager.getSelectionModel().selectedItemProperty().addListener((obs, oldSelection, newSelection) -> {
+            if (newSelection != null) {
+                fullFillSurveyResultTree(newSelection.getId());
+            }
+        });
 
         requestNum.setCellValueFactory(new PropertyValueFactory<Request, String>("number"));
         requestAddiction.setCellValueFactory(new PropertyValueFactory<Request, String>("addiction"));
@@ -88,10 +100,10 @@ public class MainController implements Initializable {
         requestDeviation.setCellValueFactory(new PropertyValueFactory<Request, String>("deviation"));
         requestSupport.setCellValueFactory(new PropertyValueFactory<Request, String>("support"));
         requestHardLife.setCellValueFactory(new PropertyValueFactory<Request, HardLifeRef>("hardLifeRef"));
-        requestHardLife.setCellFactory(new Callback<TableColumn<Request, HardLifeRef>, TableCell<Request, HardLifeRef>>(){
+        requestHardLife.setCellFactory(new Callback<TableColumn<Request, HardLifeRef>, TableCell<Request, HardLifeRef>>() {
             @Override
             public TableCell<Request, HardLifeRef> call(TableColumn<Request, HardLifeRef> param) {
-                TableCell<Request, HardLifeRef> cell = new TableCell<Request, HardLifeRef>(){
+                TableCell<Request, HardLifeRef> cell = new TableCell<Request, HardLifeRef>() {
                     @Override
                     protected void updateItem(HardLifeRef item, boolean empty) {
                         if (item != null) {
@@ -123,7 +135,7 @@ public class MainController implements Initializable {
         requestDeliveryService.setCellFactory(new Callback<TableColumn<Request, DeliveryServiceRef>, TableCell<Request, DeliveryServiceRef>>() {
             @Override
             public TableCell<Request, DeliveryServiceRef> call(TableColumn<Request, DeliveryServiceRef> requestDeliveryServiceRefTableColumn) {
-                TableCell<Request, DeliveryServiceRef> cell = new TableCell<Request, DeliveryServiceRef>(){
+                TableCell<Request, DeliveryServiceRef> cell = new TableCell<Request, DeliveryServiceRef>() {
                     @Override
                     protected void updateItem(DeliveryServiceRef deliveryServiceRef, boolean b) {
                         if (deliveryServiceRef != null) {
@@ -206,9 +218,50 @@ public class MainController implements Initializable {
         stage.showAndWait();
     }
 
-    private void fullFillSurveyResultTree() {
-        TreeItem<SurveyResultItem> root = new TreeItem<>(new SurveyResultItem());
-        TreeItem<SurveyResultItem> chapter = new TreeItem<>(new SurveyResultItem());
+    private void fullFillSurveyResultTree(final long teenager) {
+        //TreeTableColumn<SurveyResultItem, String> chapterColumn = new TreeTableColumn<>("Chapter");
+        //TreeTableColumn<SurveyResultItem, String> questionColumn = new TreeTableColumn<>("Question");
+        //TreeTableColumn<SurveyResultItem, String> answerColumn = new TreeTableColumn<>("Answer");
 
+        //chapterColumn.setCellValueFactory(new TreeItemPropertyValueFactory<SurveyResultItem, String>("chapter"));
+        //questionColumn.setCellValueFactory(new TreeItemPropertyValueFactory<SurveyResultItem, String>("question"));
+        //answerColumn.setCellValueFactory(new TreeItemPropertyValueFactory<SurveyResultItem, String>("answer"));
+
+        //survey.getColumns().addAll(surveyChapter, surveyQuestion, surveyAnswer);
+
+        TreeItem<SurveyResultItem> root = new TreeItem<>(new SurveyResultItem());
+
+        List<SurveyRef> surveyRefParentList = SurveyRefService.getInstance().findAllParents();
+        System.out.println(surveyRefParentList);
+        for (SurveyRef chapter : surveyRefParentList) {
+            TreeItem<SurveyResultItem> chapterTreeItem = new TreeItem<>(new SurveyResultItem(chapter));
+
+            for (SurveyRef child : SurveyRefService.getInstance().findChildren(chapter.getId())){
+                SurveyResult answer = SurveyResultService.getInstance().findBySurveyRefId(child, teenager);
+                TreeItem<SurveyResultItem> answerTreeItem = new TreeItem<>(new SurveyResultItem(child, answer));
+                chapterTreeItem.getChildren().add(answerTreeItem);
+            }
+
+            root.getChildren().add(chapterTreeItem);
+
+        }
+        survey.setRoot(root);
+        survey.setShowRoot(false);
+        expandTreeView(survey.getRoot());
+    }
+
+    private void expandTreeView(TreeItem<?> item){
+        if(item != null && !item.isLeaf()){
+            item.setExpanded(true);
+            for(TreeItem<?> child:item.getChildren()){
+                expandTreeView(child);
+            }
+        }
+    }
+
+    private void clearSurvey() {
+        if (survey != null && survey.getRoot() != null && survey.getRoot().getChildren() != null) {
+            survey.getRoot().getChildren().clear();
+        }
     }
 }

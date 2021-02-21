@@ -40,7 +40,7 @@ public class Teenager implements Serializable {
     private ObjectProperty<LocalDateTime> created = new SimpleObjectProperty<>(this, "created");
     private ObjectProperty<LocalDateTime> updated = new SimpleObjectProperty<>(this, "updated");
     private ListProperty<Request> requests = new SimpleListProperty<>();//new ArrayList<>();
-    private ListProperty<Caretaker> caretakers = new SimpleListProperty<>();//new ArrayList<>();
+    //private ListProperty<Caretaker> caretakers = new SimpleListProperty<>();//new ArrayList<>();
 
     public LongProperty idProperty() {
         return id;
@@ -203,6 +203,7 @@ public class Teenager implements Serializable {
 
     @OneToMany(targetEntity = Request.class, cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     @JoinColumn(name = "teenager_id", nullable = true)
+    @LazyCollection(LazyCollectionOption.TRUE)
     public List<Request> getRequests() {
         return requests.get();
     }
@@ -214,7 +215,7 @@ public class Teenager implements Serializable {
     public ListProperty requestsProperty() {
         return requests;
     }
-
+/*
     @OneToMany(targetEntity = Caretaker.class, cascade = CascadeType.ALL)
     @JoinColumn(name = "teenager_id", nullable = true)
     @LazyCollection(LazyCollectionOption.FALSE)
@@ -229,4 +230,5 @@ public class Teenager implements Serializable {
     public ListProperty caretakersProperty(){
         return caretakers;
     }
+*/
 }

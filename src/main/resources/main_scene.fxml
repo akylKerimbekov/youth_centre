@@ -84,13 +84,14 @@
                             </VBox.margin>
                         </HBox>
                         <TreeTableView fx:id="survey" prefHeight="385.0" prefWidth="817.0">
-                            <columns>
-                                <TreeTableColumn prefWidth="75.0" text="C1" />
-                                <TreeTableColumn prefWidth="75.0" text="C2" />
-                            </columns>
                             <VBox.margin>
                                 <Insets bottom="10.0" left="10.0" right="10.0" top="10.0"/>
                             </VBox.margin>
+                            <columns>
+                                <TreeTableColumn fx:id="surveyChapter" prefWidth="250.0" text="Раздел"/>
+                                <TreeTableColumn fx:id="surveyQuestion" prefWidth="250.0" text="Вопрос"/>
+                                <TreeTableColumn fx:id="surveyAnswer" prefWidth="250.0" text="Ответ"/>
+                            </columns>
                         </TreeTableView>
                         <HBox prefHeight="38.0" prefWidth="817.0">
                             <children>

@@ -41,6 +41,32 @@ public class SurveyRefService {
     }
 
     @Transactional
+    public List<SurveyRef> findAllParents(){
+        List<SurveyRef> surveyRefList = null;
+        try (Session session = HibernateUtil.getSessionFactory().openSession()) {
+            surveyRefList = session.createQuery("from SurveyRef where parentId is null", SurveyRef.class).list();
+            surveyRefList.forEach(s -> System.out.println(s));
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return surveyRefList;
+    }
+
+    @Transactional
+    public List<SurveyRef> findChildren(Long parentId){
+        List<SurveyRef> surveyRefList = null;
+        try (Session session = HibernateUtil.getSessionFactory().openSession()) {
+            surveyRefList = session.createQuery("from SurveyRef where parentId = :parentId", SurveyRef.class)
+                    .setParameter("parentId", parentId)
+                    .list();
+            surveyRefList.forEach(s -> System.out.println(s));
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return surveyRefList;
+    }
+
+    @Transactional
     public ObservableList<SurveyRef> findBySurveyRefId(Long surveyRefId){
         List<SurveyRef> surveyRefList = null;
         try (Session session = HibernateUtil.getSessionFactory().openSession()) {

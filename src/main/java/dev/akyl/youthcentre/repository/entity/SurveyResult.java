@@ -1,11 +1,11 @@
 package dev.akyl.youthcentre.repository.entity;
 
 import javafx.beans.property.*;
-import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.ToString;
 
 import javax.persistence.*;
+import java.io.Serializable;
 import java.time.LocalDateTime;
 
 @Entity
@@ -13,7 +13,7 @@ import java.time.LocalDateTime;
 @Access(value = AccessType.PROPERTY)
 @EqualsAndHashCode
 @ToString
-public class SurveyResult {
+public class SurveyResult implements Serializable {
 
     private LongProperty id = new SimpleLongProperty(this, "id");
     private ObjectProperty<SurveyRef> surveyRef = new SimpleObjectProperty<>(this, "surveyRef");
@@ -21,7 +21,8 @@ public class SurveyResult {
     private ObjectProperty<LocalDateTime> created = new SimpleObjectProperty<>(this, "created");
     private ObjectProperty<LocalDateTime> updated = new SimpleObjectProperty<>(this, "updated");
     private IntegerProperty version = new SimpleIntegerProperty(this, "version");
-    private ObjectProperty<Teenager> teenager = new SimpleObjectProperty<>(this, "teenager");
+    //private ObjectProperty<Teenager> teenager = new SimpleObjectProperty<>(this, "teenager");
+    private LongProperty teenagerId = new SimpleLongProperty(this, "teenagerId");
     private BooleanProperty actual = new SimpleBooleanProperty(this, "actual");
 
     @Id
@@ -105,18 +106,32 @@ public class SurveyResult {
         this.version.set(version);
     }
 
-    @ManyToOne(targetEntity = Teenager.class)
-    @JoinColumn(name = "teenager_id", referencedColumnName = "id")
-    public Teenager getTeenager() {
-        return teenager.get();
+    /*
+        @ManyToOne(targetEntity = Teenager.class)
+        @JoinColumn(name = "teenager_id", referencedColumnName = "id")
+        public Teenager getTeenager() {
+            return teenager.get();
+        }
+
+        public ObjectProperty<Teenager> teenagerProperty() {
+            return teenager;
+        }
+
+        public void setTeenager(Teenager teenager) {
+            this.teenager.set(teenager);
+        }
+    */
+    @Column(name = "teenager_id")
+    public long getTeenagerId() {
+        return teenagerId.get();
     }
 
-    public ObjectProperty<Teenager> teenagerProperty() {
-        return teenager;
+    public LongProperty teenagerId() {
+        return teenagerId;
     }
 
-    public void setTeenager(Teenager teenager) {
-        this.teenager.set(teenager);
+    public void setTeenagerId(long teenagerId) {
+        this.teenagerId.set(teenagerId);
     }
 
     @Column(name = "actual")

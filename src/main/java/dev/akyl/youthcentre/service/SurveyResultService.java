@@ -1,7 +1,9 @@
 package dev.akyl.youthcentre.service;
 
 import dev.akyl.youthcentre.repository.HibernateUtil;
+import dev.akyl.youthcentre.repository.entity.SurveyRef;
 import dev.akyl.youthcentre.repository.entity.SurveyResult;
+import dev.akyl.youthcentre.repository.entity.Teenager;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import org.hibernate.Session;
@@ -40,19 +42,27 @@ public class SurveyResultService {
         return surveyResults;
     }
 
-    @Transactional
-    public ObservableList<SurveyResult> findBySurveyResultId(Long surveyResultId){
+    public SurveyResult findBySurveyRefId(SurveyRef surveyRef, final long teenagerId){
         List<SurveyResult> surveyResultList = null;
+        System.out.println("surveyRefId " + surveyRef);
         try (Session session = HibernateUtil.getSessionFactory().openSession()) {
-            surveyResultList = session.createQuery("from SurveyResult where id = :surveyResultId", SurveyResult.class)
-                    .setParameter("surveyResultId", surveyResultId)
+            surveyResultList = session.createQuery("from SurveyResult " +
+                    "where actual = true " +
+                    "and teenagerId = :teenagerId " +
+                    "and surveyRef = :surveyRef ", SurveyResult.class)
+                    .setParameter("teenagerId", teenagerId)
+                    .setParameter("surveyRef", surveyRef)
                     .list();
             surveyResultList.forEach(s -> System.out.println(s));
         } catch (Exception e) {
+            System.out.println("shit happens!");
             e.printStackTrace();
         }
-        surveyResults = FXCollections.observableArrayList(surveyResultList);
-        return surveyResults;
+
+        if (surveyResultList != null && !surveyResultList.isEmpty() && surveyResultList.get(0) != null) {
+            return surveyResultList.get(0);
+        }
+        return null;
     }
 
     @Transactional

@@ -5,6 +5,7 @@ import lombok.EqualsAndHashCode;
 import lombok.ToString;
 
 import javax.persistence.*;
+import java.io.Serializable;
 import java.time.LocalDateTime;
 
 @Entity
@@ -12,7 +13,7 @@ import java.time.LocalDateTime;
 @Access(value = AccessType.PROPERTY)
 @EqualsAndHashCode
 @ToString
-public class SurveyRef {
+public class SurveyRef implements Serializable {
 
     private LongProperty id = new SimpleLongProperty(this, "id");
     private LongProperty parentId = new SimpleLongProperty(this, "parentId");
@@ -42,16 +43,16 @@ public class SurveyRef {
     }
 
     @Column(name = "parent_id")
-    public long getParentId() {
-        return parentId.get();
+    public Long getParentId() {
+        return parentId.getValue();
     }
 
     public LongProperty parentIdProperty() {
         return parentId;
     }
 
-    public void setParentId(long parentId) {
-        this.parentId.set(parentId);
+    public void setParentId(Long parentId) {
+        this.parentId.setValue(parentId);
     }
 
     @Column(name = "code")
@@ -90,7 +91,8 @@ public class SurveyRef {
     }
 
     public void setNumField(Boolean numField) {
-        this.numField.set(numField);
+//        this.numField.set(numField);
+        this.numField.setValue(numField);
     }
 
     @Column(name = "is_string")
@@ -103,7 +105,8 @@ public class SurveyRef {
     }
 
     public void setStrField(Boolean strField) {
-        this.strField.set(strField);
+//        this.strField.set(strField);
+        this.strField.setValue(strField);
     }
 
     @Column(name = "is_boolean")
@@ -116,7 +119,8 @@ public class SurveyRef {
     }
 
     public void setBoolField(Boolean boolField) {
-        this.boolField.set(boolField);
+        //this.boolField.set(boolField);
+        this.boolField.setValue(boolField);
     }
 
     @Column(name = "is_reference")
@@ -129,7 +133,8 @@ public class SurveyRef {
     }
 
     public void setRefField(Boolean refField) {
-        this.refField.set(refField);
+//        this.refField.set(refField);
+        this.refField.setValue(refField);
     }
 
     @Column(name = "created")

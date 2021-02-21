@@ -11,19 +11,18 @@ public class SurveyResultItem {
     public SurveyResultItem() {
     }
 
-    public SurveyResultItem(StringProperty chapter) {
-        this.chapter = chapter;
+    public SurveyResultItem(SurveyRef surveyRef) {
+        this.chapter.bindBidirectional(surveyRef.codeProperty());
+        //chapter.set(surveyRef.getCode());
     }
 
-    public SurveyResultItem(StringProperty question, StringProperty answer) {
-        this.question = question;
-        this.answer = answer;
-    }
-
-    public SurveyResultItem(StringProperty chapter, StringProperty question, StringProperty answer) {
-        this.chapter = chapter;
-        this.question = question;
-        this.answer = answer;
+    public SurveyResultItem(SurveyRef surveyRef, SurveyResult surveyResult) {
+        this.question.bindBidirectional(surveyRef.codeProperty());
+        if (surveyResult != null) {
+            this.answer.bindBidirectional(surveyResult.valueProperty());
+        } else {
+            this.answer.set("");
+        }
     }
 
     public String getChapter() {
