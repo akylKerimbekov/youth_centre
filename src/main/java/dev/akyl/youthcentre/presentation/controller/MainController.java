@@ -264,4 +264,16 @@ public class MainController implements Initializable {
             survey.getRoot().getChildren().clear();
         }
     }
+
+    public void addSurveyResult(ActionEvent actionEvent) throws IOException {
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/add_survey_ref.fxml"));
+        Parent parent = fxmlLoader.load();
+        AddSurveyRefController dialogController = fxmlLoader.<AddSurveyRefController>getController();
+
+        Scene scene = new Scene(parent, 500, 500);
+        Stage stage = new Stage();
+        stage.initModality(Modality.APPLICATION_MODAL);
+        stage.setScene(scene);
+        stage.showAndWait();
+    }
 }

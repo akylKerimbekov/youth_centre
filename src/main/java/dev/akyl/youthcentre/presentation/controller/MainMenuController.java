@@ -1,7 +1,5 @@
 package dev.akyl.youthcentre.presentation.controller;
 
-import dev.akyl.youthcentre.repository.entity.Teenager;
-import dev.akyl.youthcentre.service.RequestService;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -44,6 +42,18 @@ public class MainMenuController {
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/deliveryservice_reference.fxml"));
         Parent parent = fxmlLoader.load();
         DeliveryServiceController dialogController = fxmlLoader.<DeliveryServiceController>getController();
+
+        Scene scene = new Scene(parent, 800, 500);
+        Stage stage = new Stage();
+        stage.initModality(Modality.APPLICATION_MODAL);
+        stage.setScene(scene);
+        stage.showAndWait();
+    }
+
+    public void openSurvey(ActionEvent actionEvent) throws IOException {
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/survey_ref.fxml"));
+        Parent parent = fxmlLoader.load();
+        SurveyRefController surveyRefController = fxmlLoader.<SurveyRefController>getController();
 
         Scene scene = new Scene(parent, 800, 500);
         Stage stage = new Stage();
