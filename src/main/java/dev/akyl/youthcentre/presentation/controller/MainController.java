@@ -25,7 +25,7 @@ import java.util.List;
 import java.util.ResourceBundle;
 
 public class MainController implements Initializable {
-
+/*
     @FXML
     private TreeTableView<SurveyResultItem> survey;
     @FXML
@@ -34,7 +34,7 @@ public class MainController implements Initializable {
     TreeTableColumn<SurveyResultItem, String> surveyQuestion;
     @FXML
     TreeTableColumn<SurveyResultItem, String> surveyAnswer;
-
+*/
     @FXML
     private TableView<Teenager> teenager;
     @FXML
@@ -70,11 +70,11 @@ public class MainController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-
+/*
         surveyChapter.setCellValueFactory(new TreeItemPropertyValueFactory<SurveyResultItem, String>("chapter"));
         surveyQuestion.setCellValueFactory(new TreeItemPropertyValueFactory<SurveyResultItem, String>("question"));
         surveyAnswer.setCellValueFactory(new TreeItemPropertyValueFactory<SurveyResultItem, String>("answer"));
-
+*/
         teenFirstName.setCellValueFactory(new PropertyValueFactory<Teenager, String>("firstName"));
         teenLastName.setCellValueFactory(new PropertyValueFactory<Teenager, String>("lastName"));
         teenBirthday.setCellValueFactory(new PropertyValueFactory<Teenager, LocalDate>("birthday"));
@@ -88,11 +88,14 @@ public class MainController implements Initializable {
                 request.refresh();
             }
         });
+        /*
         teenager.getSelectionModel().selectedItemProperty().addListener((obs, oldSelection, newSelection) -> {
             if (newSelection != null) {
                 fullFillSurveyResultTree(newSelection.getId());
             }
         });
+
+         */
 
         requestNum.setCellValueFactory(new PropertyValueFactory<Request, String>("number"));
         requestAddiction.setCellValueFactory(new PropertyValueFactory<Request, String>("addiction"));
@@ -218,6 +221,14 @@ public class MainController implements Initializable {
         stage.showAndWait();
     }
 
+    public void addSurvey(ActionEvent actionEvent) {
+
+    }
+
+    public void showSurvey(ActionEvent actionEvent) {
+
+    }
+/*
     private void fullFillSurveyResultTree(final long teenager) {
         //TreeTableColumn<SurveyResultItem, String> chapterColumn = new TreeTableColumn<>("Chapter");
         //TreeTableColumn<SurveyResultItem, String> questionColumn = new TreeTableColumn<>("Question");
@@ -276,4 +287,6 @@ public class MainController implements Initializable {
         stage.setScene(scene);
         stage.showAndWait();
     }
+
+ */
 }

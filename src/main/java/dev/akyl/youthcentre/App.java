@@ -14,8 +14,20 @@ import org.hibernate.Transaction;
 import java.util.List;
 
 public class App extends Application {
+
+    private static Stage primaryStage;
+
+    public static Stage getPrimaryStage() {
+        return primaryStage;
+    }
+
+    public static void setPrimaryStage(Stage primaryStage) {
+        App.primaryStage = primaryStage;
+    }
+
     @Override
     public void start(Stage stage) throws Exception {
+        setPrimaryStage(stage);
         Parent root = FXMLLoader.load(getClass().getResource("/main_scene.fxml"));
         Scene scene = new Scene(root, 1200, 800);
         stage.setTitle("Main");

@@ -11,14 +11,22 @@
                     <MenuItem onAction="#openPsychoActive" text="Психо-активные вещества"/>
                     <MenuItem onAction="#openHardLife" text="Трудная жизнь"/>
                     <MenuItem onAction="#openDeliveryService" text="Услуги"/>
+                    <!--
                     <MenuItem onAction="#openSurvey" text="Анкета"/>
+                    -->
                     <SeparatorMenuItem/>
                     <MenuItem text="Exit"/>
                 </items>
             </Menu>
+            <Menu text="Отчеты">
+                <items>
+                    <MenuItem onAction="#reportGender" text="Отчеты по гендерному признаку"/>
+                    <MenuItem onAction="#reporTeenagers" text="Все подростки"/>
+                </items>
+            </Menu>
             <Menu text="Help">
                 <items>
-                    <MenuItem onAction="#generate" text="Генерация тестового набора"/>
+                    <MenuItem onAction="#backup" text="Резервная копия"/>
                     <MenuItem text="About"/>
                 </items>
             </Menu>

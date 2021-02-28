@@ -2,6 +2,9 @@
 *.iml
 *.iws
 *.db
+*.xlsx
+*.xls
+*.zip
 
 log/
 target/

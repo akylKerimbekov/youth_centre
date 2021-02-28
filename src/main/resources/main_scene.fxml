@@ -27,25 +27,25 @@
                                 <Insets bottom="10.0" left="10.0" right="10.0" top="10.0"/>
                             </VBox.margin>
                             <children>
-                                <Button mnemonicParsing="false" onAction="#addTeenager" text="Добавить" wrapText="true">
+                                <Button prefWidth="100" mnemonicParsing="false" onAction="#addTeenager" text="Добавить" wrapText="true">
                                     <HBox.margin>
-                                        <Insets left="100.0" right="15.0"/>
+                                        <Insets left="50.0" right="15.0"/>
                                     </HBox.margin>
                                 </Button>
-                                <Button mnemonicParsing="false" onAction="#updateTeenager" text="Изменить"
+                                <Button prefWidth="100" mnemonicParsing="false" onAction="#updateTeenager" text="Изменить"
                                         wrapText="true">
                                     <HBox.margin>
                                         <Insets right="15.0"/>
                                     </HBox.margin>
                                 </Button>
-                                <Button mnemonicParsing="false" text="Удалить" wrapText="true"/>
+                                <Button prefWidth="100" mnemonicParsing="false" text="Удалить" wrapText="true"/>
                             </children>
                         </HBox>
                     </children>
                 </VBox>
                 <VBox prefHeight="800.0" prefWidth="837.0">
                     <children>
-                        <TableView fx:id="request" prefHeight="298.0" prefWidth="817.0">
+                        <TableView fx:id="request" prefHeight="736.0" prefWidth="817.0">
                             <columns>
                                 <TableColumn fx:id="requestNum" prefWidth="40.0" text="№"/>
                                 <TableColumn fx:id="requestHardLife" prefWidth="75.0" text="ТЖС"/>
@@ -62,18 +62,30 @@
                         </TableView>
                         <HBox prefHeight="38.0" prefWidth="817.0">
                             <children>
-                                <Button mnemonicParsing="false" onAction="#addRequest" text="Добавить" wrapText="true">
+                                <!--
+                                <Button prefWidth="150" mnemonicParsing="false" onAction="#addSurvey" text="Добавить анкету" wrapText="true">
                                     <HBox.margin>
-                                        <Insets left="550.0" right="15.0"/>
+                                        <Insets left="50.0" right="15.0"/>
                                     </HBox.margin>
                                 </Button>
-                                <Button mnemonicParsing="false" onAction="#updateRequest" text="Изменить"
+                                <Button prefWidth="150" mnemonicParsing="false" onAction="#showSurvey" text="Показать анкету" wrapText="true">
+                                    <HBox.margin>
+                                        <Insets left="10.0" right="15.0"/>
+                                    </HBox.margin>
+                                </Button>
+                                -->
+                                <Button prefWidth="100" mnemonicParsing="false" onAction="#addRequest" text="Добавить" wrapText="true">
+                                    <HBox.margin>
+                                        <Insets left="450.0" right="15.0"/>
+                                    </HBox.margin>
+                                </Button>
+                                <Button prefWidth="100" mnemonicParsing="false" onAction="#updateRequest" text="Изменить"
                                         wrapText="true">
                                     <HBox.margin>
                                         <Insets left="10.0" right="15.0"/>
                                     </HBox.margin>
                                 </Button>
-                                <Button mnemonicParsing="false" text="Удалить">
+                                <Button prefWidth="100" mnemonicParsing="false" text="Удалить">
                                     <HBox.margin>
                                         <Insets left="10.0" right="15.0"/>
                                     </HBox.margin>
@@ -83,6 +95,7 @@
                                 <Insets bottom="10.0" left="10.0" right="10.0" top="10.0"/>
                             </VBox.margin>
                         </HBox>
+                        <!--
                         <TreeTableView fx:id="survey" prefHeight="385.0" prefWidth="817.0">
                             <VBox.margin>
                                 <Insets bottom="10.0" left="10.0" right="10.0" top="10.0"/>
@@ -115,6 +128,7 @@
                                 <Insets bottom="10.0" left="10.0" right="10.0" top="10.0"/>
                             </VBox.margin>
                         </HBox>
+                        -->
                     </children>
                 </VBox>
             </children>
